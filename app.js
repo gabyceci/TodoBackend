@@ -6,14 +6,14 @@ import swaggerJsdoc from "swagger-jsdoc"
 
 const app = express()
 
-// Configuración de CORS
 const corsOptions = {
   origin: [
     'http://localhost:4000',
     'https://todobackend-u0sn.onrender.com'
   ],
   credentials: true,
-  optionsSuccessStatus: 200
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }
 
 app.use(cors(corsOptions))
