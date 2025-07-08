@@ -1,10 +1,22 @@
 import express from "express"
+import cors from "cors"
 import todoRoutes from "./src/routes/todoroutes.js"
 import swaggerUi from "swagger-ui-express"
 import swaggerJsdoc from "swagger-jsdoc"
 
 const app = express()
 
+// Configuración de CORS
+const corsOptions = {
+  origin: [
+    'http://localhost:4000',
+    'https://todobackend-u0sn.onrender.com'
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 app.use(express.json())
 
 const swaggerOptions = {
@@ -20,6 +32,10 @@ const swaggerOptions = {
         url: 'http://localhost:4000',
         description: 'Servidor de desarrollo',
       },
+      {
+        url: 'https://todobackend-u0sn.onrender.com',
+        description: 'Servidor de producción',
+      }
     ],
   },
   apis: ['./src/routes/todoroutes.js']
