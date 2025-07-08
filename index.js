@@ -7,5 +7,4 @@ async function main() {
   console.log("Server on port " + config.server.port);
 }
 
-
 main();

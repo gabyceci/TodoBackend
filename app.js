@@ -6,18 +6,26 @@ import swaggerJsdoc from "swagger-jsdoc"
 
 const app = express()
 
+// Configuración de CORS más permisiva
 const corsOptions = {
   origin: [
+    'http://localhost:3000',
     'http://localhost:4000',
     'https://todobackend-u0sn.onrender.com'
   ],
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOptions))
 app.use(express.json())
+
+// Ruta básica para verificar que el servidor funciona
+app.get('/', (req, res) => {
+  res.json({ message: 'Todo API funcionando correctamente' })
+})
 
 const swaggerOptions = {
   definition: {
